@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Skills | Kelvin{% endblock %}
+
+{% block content %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/skills.css' %}">
+{% endblock %}
+
+<section class="skills-section">
+
+  <h2 class="section-title">Skills & Expertise</h2>
+
+  <!-- TABS -->
+  <div class="skills-tabs">
+    <button class="tab-btn active" data-tab="frontend">Frontend</button>
+    <button class="tab-btn" data-tab="backend">Backend</button>
+    <button class="tab-btn" data-tab="design">Design</button>
+    <button class="tab-btn" data-tab="tools">Tools</button>
+  </div>
+
+  <!-- TAB CONTENT -->
+  <div class="tab-content active" id="frontend">
+    {% include 'partials/skill-bar.html' with skill="HTML" level="90" %}
+    {% include 'partials/skill-bar.html' with skill="CSS" level="85" %}
+    {% include 'partials/skill-bar.html' with skill="JavaScript" level="80" %}
+  </div>
+
+  <div class="tab-content" id="backend">
+    {% include 'partials/skill-bar.html' with skill="Python" level="85" %}
+    {% include 'partials/skill-bar.html' with skill="Django" level="80" %}
+    {% include 'partials/skill-bar.html' with skill="Java" level="70" %}
+  </div>
+
+  <div class="tab-content" id="design">
+    {% include 'partials/skill-bar.html' with skill="Figma" level="80" %}
+    {% include 'partials/skill-bar.html' with skill="Photoshop" level="75" %}
+  </div>
+
+  <div class="tab-content" id="tools">
+    {% include 'partials/skill-bar.html' with skill="Git & GitHub" level="85" %}
+    {% include 'partials/skill-bar.html' with skill="MySQL" level="70" %}
+  </div>
+
+</section>
+{% endblock %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        // Remove active states
+        tabs.forEach(t => t.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+
+        // Activate clicked tab
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+      });
+    });
+  });
+</script>
+{% block extra_css %}
+

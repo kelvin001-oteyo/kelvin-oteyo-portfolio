@@ -1,0 +1,541 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kelvin Oteyo | Full-Stack Developer</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Kelvin Oteyo – Full-Stack Developer building scalable web systems and business websites.">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+
+
+
+
+<header class="navbar">
+  <div class="logo">Kelvin<span>.</span></div>
+
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <nav id="navLinks">
+    <a href="/">Home</a>
+    <a href="/projects/">Projects</a>
+    <a href="/skills/">Skills</a>
+    <a href="/education/">Education</a>
+    <a href="/contact/">Contact</a>
+
+    <a href="{% static 'files/Kelvin_Oteyo_CV.pdf' %}"
+       class="cv-btn"
+       target="_blank">
+      Download CV
+    </a>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </nav>
+</header>
+
+
+
+
+
+
+<section class="hero fade-in">
+ 
+  <div class="hero-left slide-left">
+    <span class="badge">Available for Projects</span>
+
+    <h1>
+      I Build <span>Scalable Web Systems</span><br>
+      That Create Real Digital Assets
+    </h1>
+
+    <p class="hero-subtext">
+  <span>Full-Stack Developer helping businesses, startups, and individuals</span>
+  <span>turn ideas into fast, secure, and growth-ready web solutions.</span>
+   </p>
+
+
+    
+
+    <div class="tech">
+      <span>Django</span>
+      <span>JavaScript</span>
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>MySQL</span>
+    </div>
+
+    <div class="hero-buttons">
+      <a href="/contact/" class="btn primary">Start a Project</a>
+      <a href="{% static 'files/Kelvin_Oteyo_CV.pdf' %}"
+         class="btn secondary"
+         target="_blank">
+        Download CV
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-center zoom-in">
+    <img src="{% static 'images/profile.png' %}" alt="Kelvin Oteyo">
+  </div>
+
+  <div class="hero-right slide-right">
+    <h4>What I Focus On</h4>
+    <ul>
+      <li>✔ Business Websites</li>
+      <li>✔ Web Applications</li>
+      <li>✔ System Design</li>
+      <li>✔ Long-Term Assets</li>
+    </ul>
+  </div>
+
+
+<!-- AUTH / COLLABORATION PROMPT -->
+<div class="auth-card auth-animate">
+  {% if user.is_authenticated %}
+    <p>
+      Welcome back, <strong>{{ user.username }}</strong> 👋
+      <a href="{% url 'collaborate' %}">Go to Collaboration</a>
+    </p>
+  {% else %}
+    <p>
+      Want to collaborate with me?
+      <a href="{% url 'login' %}">Login</a> or
+      <a href="{% url 'register' %}">Create an account</a>
+    </p>
+  {% endif %}
+</div>
+
+<!-- CSS inside HTML -->
+<style>
+  /* AUTH CARD STYLING */
+  .auth-card {
+    background: radial-gradient(circle at top, #0f2a4d, #020617);
+    color: #e0e7ff;
+    padding: 1.8rem 2rem;
+    border-radius: 18px;
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 15px #38bdf8;
+    font-size: 1rem;
+    opacity: 0; /* start hidden for animation */
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.8s ease-out;
+  }
+
+  .auth-card p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .auth-card a {
+    color: #22c55e;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .auth-card a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: #22c55e;
+    transform: translateX(-50%);
+    transition: width 0.35s ease;
+  }
+
+  .auth-card a:hover::after {
+    width: 70%;
+  }
+
+  /* ANIMATION CLASS */
+  .fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+
+  /* OPTIONAL: delay for nicer entrance */
+  .delay-1 { transition-delay: 0.3s; }
+  .delay-2 { transition-delay: 0.6s; }
+
+
+
+
+
+  
+/* ===============================
+    FOOTER BASE
+================================ */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--text-color);
+  padding: 70px 20px 30px;
+  margin-top: 120px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.site-footer.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Layout */
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+/* Titles */
+.site-footer h3,
+.site-footer h4 {
+  color: var(--accent-color);
+  margin-bottom: 14px;
+}
+
+/* Text */
+.site-footer p,
+.site-footer a {
+  font-size: 14px;
+  color: var(--muted-text);
+}
+
+/* Links */
+.site-footer a {
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+/* Tech Stack */
+.tech-stack {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Bottom */
+.footer-bottom {
+  margin-top: 45px;
+  padding-top: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(148,163,184,0.2);
+  font-size: 13px;
+}
+
+/* ===============================
+   DARK / LIGHT THEME VARIABLES
+================================ */
+:root {
+  --footer-bg: #020617;
+  --text-color: #e5e7eb;
+  --muted-text: #cbd5f5;
+  --accent-color: #38bdf8;
+}
+
+.light-theme {
+  --footer-bg: #f8fafc;
+  --text-color: #020617;
+  --muted-text: #475569;
+  --accent-color: #2563eb;
+}
+
+/* ===============================
+   MOBILE OPTIMIZATION
+================================ */
+@media (max-width: 600px) {
+  .site-footer {
+    text-align: center;
+  }
+
+  .site-footer a:hover {
+    transform: none;
+  }
+}
+
+</style>
+
+
+
+</section>
+
+
+<section class="news fade-in">
+  <h2 class="section-title">Latest Updates</h2>
+
+  {% if user.is_authenticated %}
+  <a href="{% url 'collaborate' %}" class="btn primary">
+    Collaborate With Me
+  </a>
+{% else %}
+  <a href="{% url 'login' %}" class="btn primary">
+    Login to Collaborate
+  </a>
+{% endif %}
+
+  <div class="news-grid">
+    {% for update in updates %}
+      <a href="{% url 'update_detail' update.slug %}" class="news-card-link">
+        <div class="news-card">
+          <h4>{{ update.title }}</h4>
+          <p>{{ update.summary|truncatechars:140 }}</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      </a>
+    {% empty %}
+      <p>No updates yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+
+<section class="collaboration fade-in">
+  <h2 class="section-title">Collaborate With Me</h2>
+
+  <p class="section-subtitle">
+    I’m building real-world systems in public and open to meaningful collaboration.
+  </p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <h4> Real Projects</h4>
+      <p>Work on actual systems, not tutorials.</p>
+    </div>
+
+    <div class="why-card">
+      <h4> Team Collaboration</h4>
+      <p>Share ideas, review code, and grow together.</p>
+    </div>
+
+    <div class="why-card">
+      <h4> Skill Growth</h4>
+      <p>Perfect for developers serious about long-term growth.</p>
+    </div>
+  </div>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'collaborate' %}" class="btn primary">
+      Request Collaboration
+    </a>
+  {% else %}
+    <a href="{% url 'login' %}" class="btn primary">
+      Login to Request Collaboration
+    </a>
+  {% endif %}
+</section>
+
+<section class="trust-strip fade-in">
+  <p>Built with Industry-Standard Technologies</p>
+  <div class="trust-tools">
+    <span>Django</span>
+    <span>MySQL</span>
+    <span>REST APIs</span>
+    <span>Git</span>
+    <span>Linux</span>
+  </div>
+</section>
+
+<section class="services fade-in">
+  <h2 class="section-title">How I Can Help You</h2>
+  <p class="section-subtitle">
+    Practical digital solutions designed for performance, scalability, and growth.
+  </p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <i class="fas fa-code"></i>
+      <h3>Business Websites</h3>
+      <p>High-performance websites that represent your brand and convert visitors.</p>
+      <span class="price">From KES 25,000</span>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-laptop-code"></i>
+      <h3>Web Applications</h3>
+      <p>Custom Django systems, dashboards, and management platforms.</p>
+      <span class="price">From KES 10,000</span>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-paint-brush"></i>
+      <h3>UI / UX Design</h3>
+      <p>Clean, user-focused interfaces designed with modern UX principles.</p>
+      <span class="price">From KES 15,000</span>
+    </div>
+
+    <div class="service-card">
+      <i class="fas fa-tools"></i>
+      <h3>Maintenance & Support</h3>
+      <p>Updates, bug fixes, optimization, and ongoing technical support.</p>
+      <span class="price">Monthly Plans Available</span>
+    </div>
+
+  </div>
+
+  <div class="services-cta">
+    <a href="/contact/" class="btn">Request a Free Quote</a>
+    <a href="https://wa.me/254714328866" target="_blank" class="btn outline">
+      Chat on WhatsApp
+    </a>
+  </div>
+</section>
+
+
+<section class="projects-preview fade-in">
+  <h2 class="section-title">Selected Work</h2>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <h4>School Management System</h4>
+      <p>End-to-end system for managing students and records.</p>
+      <span class="tech-tag">Django</span>
+      <span class="tech-tag">MySQL</span>
+    </div>
+
+    <div class="project-card">
+      <h4>Advanced Portfolio Platform</h4>
+      <p>High-impact personal brand website built for growth.</p>
+      <span class="tech-tag">HTML</span>
+      <span class="tech-tag">CSS</span>
+      <span class="tech-tag">JavaScript</span>
+    </div>
+  </div>
+
+  <a href="/projects/" class="btn small">View All Projects</a>
+</section>
+
+<section class="why-me fade-in">
+  <h2 class="section-title">Why Work With Me</h2>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <h4>Clean & Scalable Code</h4>
+      <p>Systems designed to grow with your business.</p>
+    </div>
+
+    <div class="why-card">
+      <h4>Asset-Driven Mindset</h4>
+      <p>I build long-term digital value, not just websites.</p>
+    </div>
+
+    <div class="why-card">
+      <h4>Clear Communication</h4>
+      <p>Fast responses and transparent project updates.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta fade-in">
+  <h2>Let’s Build Something Valuable</h2>
+  <p>If you’re serious about your digital presence, let’s do it right.</p>
+
+  <a href="/contact/" class="btn primary">Start a Project</a>
+</section>
+
+
+
+<a href="https://wa.me/254714328866" class="whatsapp" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+
+
+  <div class="footer-container">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <h3>Kelvin Oteyo</h3>
+      <p>Full-Stack Developer · IT Student · Building real-world systems</p>
+      <p class="tech-stack">HTML • CSS • JavaScript • Python • Django</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'projects' %}">Projects</a>
+      <a href="{% url 'collaborate' %}">Collaborate</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p> <a href="mailto:oteyikelvin@gmail.com">oteyikelvin@gmail.com</a></p>
+      <p> Kenya</p>
+      <p> Open for collaboration</p>
+    </div>
+
+    <!-- Social -->
+    <div class="footer-social">
+      <h4>Connect</h4>
+      <a href="#" target="_blank">GitHub</a>
+      <a href="#" target="_blank">LinkedIn</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p> <span id="year"></span> Kelvin Oteyo. All rights reserved.</p>
+  </div>
+</footer>
+<!-- JS for scroll animation -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const card = document.querySelector(".auth-animate");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("fade-in", "delay-1");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if(card) observer.observe(card);
+  });
+
+
+
+
+
+
+  
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+</script>
+
+</body>
+</html>

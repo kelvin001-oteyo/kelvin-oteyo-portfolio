@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Education & Certifications | Kelvin Oteyo{% endblock %}
+
+{% block content %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/education.css' %}">
+{% endblock %}
+<section class="education-page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <span class="page-tag">CREDENTIALS</span>
+    <h1>Education & Certifications</h1>
+    <p>Academic achievements and professional certifications that validate my expertise</p>
+  </div>
+
+  <!-- GRID -->
+  <div class="education-grid">
+
+    <!-- LEFT: EDUCATION CARD -->
+    <div class="education-card">
+      <h4 class="card-label">Highest Degree</h4>
+
+      <h2>Bachelor of Science in Information Technology</h2>
+      <p class="school">Kisii University, Kenya · 2021 – 2024</p>
+
+      <p class="desc">
+        Specialized in software development, networking systems, and database management,
+        with hands-on projects in modern web technologies.
+      </p>
+
+      <div class="focus-areas">
+        <span>Software Engineering</span>
+        <span>Web Development</span>
+        <span>Databases</span>
+      </div>
+
+      <a href="#" class="btn small">View Degree Certificate</a>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="education-side">
+
+      <!-- STATS -->
+      <div class="stats-card">
+        <h4>Certification Stats</h4>
+
+        <div class="stat">
+          <span>Technical Skills</span>
+          <div class="stat-bar"><div style="width:75%"></div></div>
+          <small>3 Certifications</small>
+        </div>
+
+        <div class="stat">
+          <span>Professional Development</span>
+          <div class="stat-bar"><div style="width:50%"></div></div>
+          <small>2 Certifications</small>
+        </div>
+
+        <div class="stat">
+          <span>Soft Skills</span>
+          <div class="stat-bar"><div style="width:40%"></div></div>
+          <small>2 Certifications</small>
+        </div>
+      </div>
+
+      <!-- CONTINUOUS LEARNING -->
+      <div class="learning-card">
+        <h4>Continuous Learning</h4>
+        <p>
+          Actively pursuing certifications in cloud technologies,
+          cybersecurity, and advanced software engineering methodologies.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="education-tabs">
+    <button class="active">All Certifications</button>
+    <button>Education</button>
+    <button>Technical</button>
+    <button>Professional</button>
+    <button>Design</button>
+    <button>Language</button>
+  </div>
+
+
+
+  <!-- CERTIFICATIONS -->
+<div class="certifications-grid">
+
+  <div class="cert-card" data-category="technical">
+    <h4>Python Programming</h4>
+    <p>Coursera</p>
+    <span class="tag">Technical</span>
+  </div>
+
+  <div class="cert-card" data-category="technical">
+    <h4>Django Web Development</h4>
+    <p>Udemy</p>
+    <span class="tag">Technical</span>
+  </div>
+
+  <div class="cert-card" data-category="professional">
+    <h4>IT Project Management</h4>
+    <p>Alison</p>
+    <span class="tag">Professional</span>
+  </div>
+
+  <div class="cert-card" data-category="design">
+    <h4>UI/UX Design with Figma</h4>
+    <p>Google</p>
+    <span class="tag">Design</span>
+  </div>
+
+  <div class="cert-card" data-category="language">
+    <h4>English for IT Professionals</h4>
+    <p>British Council</p>
+    <span class="tag">Language</span>
+  </div>
+
+</div>
+
+
+</section>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/collaborate.css' %}">
+{% endblock %}
+
+<!-- ================= HERO ================= -->
+<section class="collab-hero collab-animate">
+  <h1>Collaborate With Me</h1>
+  <p>
+    Submit your details to collaborate on projects, receive shared notes,
+    and stay connected.
+  </p>
+  <a href="#collab-form" class="btn collab-btn">Join Collaboration</a>
+</section>
+
+
+<!-- ================= FORM ================= -->
+<section id="collab-form" class="collab-section">
+  <h2>Join Collaboration</h2>
+
+  <form method="POST" class="collab-form">
+    {% csrf_token %}
+
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+
+    <select name="role" required>
+      <option value="">Your Role</option>
+      <option>Student</option>
+      <option>Developer</option>
+      <option>Designer</option>
+      <option>Researcher</option>
+      <option>Other</option>
+    </select>
+
+    <select name="area" required>
+      <option value="">Area of Collaboration</option>
+      <option>Projects</option>
+      <option>Notes</option>
+      <option>Research</option>
+      <option>Mentorship</option>
+    </select>
+
+    <textarea name="message" placeholder="Short message" required></textarea>
+
+    <button class="btn collab-btn">Submit</button>
+  </form>
+</section>
+
+
+<!-- ================= COLLABORATORS ================= -->
+<section class="collab-list">
+  <h2>Active Collaborators</h2>
+
+  <div class="collab-cards">
+    {% for c in collaborators %}
+      <div class="collab-card">
+        <h4>{{ c.name }}</h4>
+        <p>{{ c.role }} · {{ c.area }}</p>
+        <span>Joined {{ c.date_joined|date:"M Y" }}</span>
+      </div>
+    {% empty %}
+      <p>No collaborators yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- ================= NOTES ================= -->
+<section class="collab-notes">
+  <h2>Shared Notes & Resources</h2>
+
+  {% for note in notes %}
+    <div class="note-card">
+      <h4>{{ note.title }}</h4>
+      <p>{{ note.description }}</p>
+      <a href="{{ note.file.url }}" download>Download</a>
+      <small>Uploaded {{ note.upload_date|date:"M Y" }}</small>
+    </div>
+  {% empty %}
+    <p>No notes uploaded yet.</p>
+  {% endfor %}
+</section>
+
+{% endblock %}

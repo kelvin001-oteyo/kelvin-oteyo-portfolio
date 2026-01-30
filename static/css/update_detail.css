@@ -1,0 +1,174 @@
+/* =====================
+   BLOG POST DETAIL
+===================== */
+
+.blog-post {
+  padding: 5rem 5%;
+  background: radial-gradient(circle at top, #0f2a4d, #020617);
+  color: #e0e7ff;
+  min-height: 80vh;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- Title ---------- */
+.blog-post h1.post-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #38bdf8;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 4px 12px rgba(56,189,248,0.35);
+}
+
+/* ---------- Date ---------- */
+.blog-post .post-date {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- Image ---------- */
+.blog-post .post-image img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 2.5rem;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+}
+
+.blog-post .post-image img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 30px 60px rgba(56,189,248,0.35);
+}
+
+/* ---------- Content ---------- */
+.blog-post .post-content {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #cbd5f5;
+  max-width: 850px;
+  margin-bottom: 3.5rem;
+}
+
+.blog-post .post-content p {
+  margin-bottom: 1.6rem;
+}
+
+/* ---------- Back Button ---------- */
+.blog-post .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  color: #020617;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 25px rgba(56,189,248,0.25);
+}
+
+.blog-post .back-link:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(56,189,248,0.45);
+}
+
+/* =====================
+   ANIMATIONS
+===================== */
+
+.fade-in {
+  animation: fadeIn 0.9s ease forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: slideUp 0.8s ease forwards;
+}
+
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: zoomIn 0.8s ease forwards;
+}
+
+/* Delays */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =====================
+   READING PROGRESS BAR
+===================== */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+
+/* =====================
+   NEXT / PREVIOUS NAV
+===================== */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.post-navigation .nav-link {
+  flex: 1;
+  padding: 1rem 1.4rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  color: #e0e7ff;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.post-navigation .nav-link:hover {
+  background: rgba(56,189,248,0.15);
+  transform: translateY(-4px);
+}
+
+.post-navigation .prev {
+  text-align: left;
+}
+
+.post-navigation .next {
+  text-align: right;
+}

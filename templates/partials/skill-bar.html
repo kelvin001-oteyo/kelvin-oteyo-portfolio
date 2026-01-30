@@ -1,0 +1,32 @@
+<div class="skill-card">
+  <div class="skill-header">
+    <span class="skill-name">{{ skill.name }}</span>
+    <span class="skill-percent">{{ skill.level }}%</span>
+  </div>
+
+  <div class="skill-bar">
+    <div class="skill-progress" data-level="{{ skill.level }}"></div>
+  </div>
+</div>
+<style>
+  .skill-card {
+    margin-bottom: 1rem;
+  }
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .skill-bar {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 20px;
+  }
+  .skill-progress {
+    background-color: #76c7c0;
+    height: 100%;
+    width: 0;
+    transition: width 1s ease-in-out;
+  }
+  

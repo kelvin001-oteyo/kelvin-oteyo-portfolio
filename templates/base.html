@@ -1,0 +1,393 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>{% block title %}Kelvin Oteyo{% endblock %}</title>
+
+  <meta name="description" content="{% block meta_description %}Portfolio of Kelvin Oteyo – Web Developer & Designer{% endblock %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% block og_title %}Kelvin Oteyo{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Creative web projects and case studies by Kelvin Oteyo{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{% block og_image %}{% static 'images/og-default.jpg' %}{% endblock %}">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  {% block extra_css %}{% endblock %}
+
+  <!-- READING PROGRESS BAR STYLE -->
+  <style>
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, #38bdf8, #22c55e);
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }
+
+.messages {
+  position: fixed;
+  top: 90px;
+  right: 30px;
+  z-index: 9999;
+  transition: all 0.6s ease;
+}
+
+.alert {
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.alert.success {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.alert.error {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   FOOTER BASE
+================================ */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--text-color);
+  padding: 70px 20px 30px;
+  margin-top: 120px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.site-footer.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Layout */
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+/* Titles */
+.site-footer h3,
+.site-footer h4 {
+  color: var(--accent-color);
+  margin-bottom: 14px;
+}
+
+/* Text */
+.site-footer p,
+.site-footer a {
+  font-size: 14px;
+  color: var(--muted-text);
+}
+
+/* Links */
+.site-footer a {
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+/* Tech Stack */
+.tech-stack {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Bottom */
+.footer-bottom {
+  margin-top: 45px;
+  padding-top: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(148,163,184,0.2);
+  font-size: 13px;
+}
+
+/* ===============================
+   DARK / LIGHT THEME VARIABLES
+================================ */
+:root {
+  --footer-bg: #020617;
+  --text-color: #e5e7eb;
+  --muted-text: #cbd5f5;
+  --accent-color: #38bdf8;
+}
+
+.light-theme {
+  --footer-bg: #f8fafc;
+  --text-color: #020617;
+  --muted-text: #475569;
+  --accent-color: #2563eb;
+}
+
+/* ===============================
+   MOBILE OPTIMIZATION
+================================ */
+@media (max-width: 600px) {
+  .site-footer {
+    text-align: center;
+  }
+
+  .site-footer a:hover {
+    transform: none;
+  }
+}
+  </style>
+
+ {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+</head>
+
+<body>
+
+<!-- READING PROGRESS BAR -->
+<div id="reading-progress"></div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Kelvin<span>.</span></div>
+
+  <nav class="nav-links">
+    <a href="/">Home</a>
+    <a href="/skills/">Skills</a>
+    <a href="/projects/">Projects</a>
+    <a href="/education/">Education</a>
+    <a href="{% url 'contact' %}">Contact</a>
+
+    {% if user.is_authenticated %}
+  <a href="{% url 'collaborate' %}">Collaborate</a>
+  <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+  <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+     
+  </nav>
+
+  <a href="#" class="btn">Download CV</a>
+</header>
+
+<!-- PAGE CONTENT -->
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<!-- QUICK LINKS -->
+<div class="quick-links">
+  <a href="{% url 'skills' %}">Skills</a>
+  <a href="/projects/">Projects</a>
+  <a href="{% url 'education' %}">Education</a>
+  <a href="{% url 'contact' %}">Contact</a>
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/254714328866" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- FOOTER -->
+
+
+<footer class="site-footer" id="footer">
+  <div class="footer-container">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <h3>Kelvin Oteyo</h3>
+      <p>Full-Stack Developer · IT Student · Building real-world systems</p>
+      <p class="tech-stack">HTML • CSS • JavaScript • Python • Django</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'projects' %}">Projects</a>
+      <a href="{% url 'collaborate' %}">Collaborate</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p> <a href="mailto:oteyikelvin@gmail.com">oteyikelvin@gmail.com</a></p>
+      <p> Kenya</p>
+      <p> Open for collaboration</p>
+    </div>
+
+    <!-- Social -->
+    <div class="footer-social">
+      <h4>Connect</h4>
+      <a href="#" target="_blank">GitHub</a>
+      <a href="#" target="_blank">LinkedIn</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p> <span id="year"></span> Kelvin Oteyo. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+
+<!-- MAIN JS -->
+<script src="{% static 'js/main.js' %}"></script>
+
+<!-- READING PROGRESS SCRIPT -->
+<script>
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    const bar = document.getElementById("reading-progress");
+
+    if (bar) {
+      bar.style.width = progress + "%";
+    }
+  });
+</script>
+
+<!-- EDUCATION FILTER SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const tabs = document.querySelectorAll(".education-tabs button");
+    const cards = document.querySelectorAll(".cert-card");
+
+    if (!tabs.length || !cards.length) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const filter = tab.textContent.toLowerCase();
+
+        cards.forEach(card => {
+          if (filter === "all certifications") {
+            card.style.display = "block";
+          } else {
+            card.style.display =
+              card.dataset.category === filter ? "block" : "none";
+          }
+        });
+      });
+    });
+
+  });
+</script>
+
+<script>
+  const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.contact, .contact-form').forEach(el => {
+    fadeObserver.observe(el);
+  });
+</script>
+
+<script>
+  setTimeout(() => {
+    const messages = document.querySelector('.messages');
+    if (messages) {
+      messages.style.opacity = '0';
+      messages.style.transform = 'translateY(-10px)';
+      setTimeout(() => messages.remove(), 600);
+    }
+  }, 4000);
+</script>
+
+<script>
+  // Animate hero on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.collab-hero').classList.add('collab-animate');
+
+    // Animate collaborator cards
+    const cards = document.querySelectorAll('.collab-card');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 150);
+    });
+  });
+</script>
+
+
+<script>
+  // Auto year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Footer scroll animation
+  const footer = document.getElementById("footer");
+
+  const footerObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        footer.classList.add("show");
+      }
+    });
+
+
+
+  });
+
+  footerObserver.observe(footer);
+</script>
+</body>
+</html>

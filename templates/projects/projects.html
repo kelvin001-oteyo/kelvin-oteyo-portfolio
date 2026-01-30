@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Projects | Kelvin Oteyo{% endblock %}
+
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/projects.css' %}">
+{% endblock %}
+<section class="projects">
+
+  <div class="projects-header">
+    <h2>Selected Work</h2>
+    <p>
+      Real-world projects focused on clean design, performance,
+      
+      and solving practical problems.
+    </p>
+  </div>
+
+  <div class="projects-grid">
+    {% for project in projects %}
+      <article class="project-card">
+
+        <div class="project-image">
+          <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        </div>
+
+        <div class="project-info">
+          <h3>{{ project.title }}</h3>
+          <p>
+           {{ project.problem|truncatewords:18 }}
+          </p>
+
+
+          <div class="project-actions">
+            {% if project.live_link %}
+              <a href="{{ project.live_link }}" target="_blank">Live Site</a>
+
+            {% endif %}
+
+            {% if project.github_link %}
+              <a href="{{ project.github_link }}" target="_blank">Source Code</a>
+            {% endif %}
+          </div>
+        </div>
+
+      </article>
+    {% empty %}
+      <p>No projects added yet.</p>
+    {% endfor %}
+  </div>
+
+</section>
+{% endblock %}

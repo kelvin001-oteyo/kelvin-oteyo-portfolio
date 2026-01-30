@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard">
+
+  <h2>Welcome, {{ user.username }} 👋</h2>
+
+  {% if collaborator %}
+    <p class="status">
+      Role: <strong>{{ collaborator.role }}</strong> |
+      Area: <strong>{{ collaborator.area }}</strong>
+    </p>
+  {% else %}
+    <p class="warning">
+      You have not submitted a collaboration request yet.
+    </p>
+  {% endif %}
+
+  <hr>
+
+  <h3>📂 Shared Notes</h3>
+
+  {% for note in notes %}
+    <div class="note-card">
+      <h4>{{ note.title }}</h4>
+      <p>{{ note.description }}</p>
+      <small>
+        Uploaded by {{ note.uploaded_by }} · {{ note.upload_date|date:"M Y" }}
+      </small>
+      <br>
+      <a href="{{ note.file.url }}" download>⬇ Download</a>
+    </div>
+  {% empty %}
+    <p>No shared notes yet.</p>
+  {% endfor %}
+
+</section>
+{% endblock %}

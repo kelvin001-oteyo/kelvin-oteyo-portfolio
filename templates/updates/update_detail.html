@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{# =========================
+   SEO META TAGS
+========================= #}
+
+{% block title %}
+{{ update.title }} | Kelvin Oteyo
+{% endblock %}
+
+{% block meta_description %}
+{{ update.meta_description|default:update.summary|truncatechars:160 }}
+{% endblock %}
+
+{% block og_title %}
+{{ update.title }}
+{% endblock %}
+
+{% block og_description %}
+{{ update.summary|truncatechars:200 }}
+{% endblock %}
+
+{% block og_image %}
+{% if update.featured_image %}
+{{ update.featured_image.url }}
+{% else %}
+{{ block.super }}
+{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/update_detail.css' %}">
+{% endblock %}
+
+{# =========================
+   PAGE CONTENT
+========================= #}
+
+{% block content %}
+<article class="blog-post container fade-in">
+
+  <h1 class="post-title">{{ update.title }}</h1>
+
+  <small class="post-date">
+    Published on {{ update.created_at|date:"F d, Y" }}
+  </small>
+
+  {% if update.featured_image %}
+    <div class="post-image zoom-in">
+      <img src="{{ update.featured_image.url }}" alt="{{ update.title }}">
+    </div>
+  {% endif %}
+
+  <div class="post-content slide-up">
+    {{ update.content|linebreaks }}
+  </div>
+
+  <div class="post-footer">
+    <a href="{% url 'update_list' %}" class="back-link">
+      ← Back to Blog
+    </a>
+  </div>
+
+</article>
+{% endblock %}

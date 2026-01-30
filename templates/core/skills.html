@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="skills-page">
+  <h1>My Skills</h1>
+
+  {% for skill in skills %}
+  <div class="skill">
+    <span>{{ skill.name }}</span>
+    <div class="bar">
+        <div class="fill" style="--level: {{ skill.level }}%"></div>
+
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}
