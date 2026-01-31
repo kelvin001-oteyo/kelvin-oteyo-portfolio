@@ -170,3 +170,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'yourgmail@gmail.com'
 EMAIL_HOST_PASSWORD = 'APP_PASSWORD_HERE'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
