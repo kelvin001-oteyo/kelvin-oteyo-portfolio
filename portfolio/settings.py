@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#qb0&+dix)1^&o%3-je2pa=f@7_tl_6q*74w0j+i72=ija2=5-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -129,6 +129,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+
+
+import django_heroku
+django_heroku.settings(locals())
+
 
 
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'templates']
