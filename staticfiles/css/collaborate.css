@@ -1,0 +1,122 @@
+/* ================= HERO ================= */
+.collab-hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.collab-hero.collab-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.collab-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.collab-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.collab-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(90deg, #32cd32, #00ff7f);
+  color: #000;
+  font-weight: bold;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 255, 127, 0.4);
+}
+
+.collab-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 255, 127, 0.6);
+}
+
+/* ================= FORM ================= */
+.collab-section {
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+}
+
+.collab-form input,
+.collab-form select,
+.collab-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.collab-form button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* ================= COLLABORATORS ================= */
+.collab-list {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.collab-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.collab-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.collab-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,255,127,0.5);
+}
+
+/* ================= NOTES ================= */
+.collab-notes {
+  text-align: center;
+}
+
+.note-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 15px;
+  max-width: 400px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(50,205,50,0.5);
+}

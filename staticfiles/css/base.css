@@ -1,0 +1,350 @@
+/* =====================
+   BASE STYLES
+===================== */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(160deg, #0f2a4d, #020617);
+  color: #e0e7ff;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+/* =====================
+   NAVBAR
+===================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: rgba(15, 42, 77, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar .logo {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.navbar .logo span {
+  color: #22c55e;
+}
+
+.navbar .nav-links a {
+  margin-left: 1.8rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #22c55e;
+  transform: translateY(-2px);
+}
+
+.navbar .btn {
+  padding: 0.6rem 1.4rem;
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  color: #020617;
+  font-weight: 600;
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(56,189,248,0.25);
+  transition: all 0.35s ease;
+}
+
+.navbar .btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(56,189,248,0.45);
+}
+
+/* =====================
+   MAIN CONTENT
+===================== */
+main {
+  padding: 6rem 5%;
+  min-height: 80vh;
+}
+
+/* =====================
+   QUICK LINKS
+===================== */
+.quick-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.quick-links a {
+  padding: 0.5rem 1.2rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  transition: all 0.35s ease;
+}
+
+.quick-links a:hover {
+  background: rgba(56,189,248,0.15);
+  transform: translateY(-4px);
+}
+
+/* =====================
+   WHATSAPP FLOAT
+===================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #25d366;
+  color: #fff;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: all 0.35s ease;
+  z-index: 999;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer {
+  text-align: center;
+  padding: 2rem 5%;
+  background: rgba(15, 42, 77, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* =====================
+   ANIMATIONS
+===================== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(25px) scale(0.95);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.slide-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.zoom-in {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+/* Optional staggered delays */
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+.delay-4 { transition-delay: 0.8s; }
+
+/* =====================
+   READING PROGRESS BAR
+===================== */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* =====================
+   PREMIUM BUTTON / LINK HOVER
+===================== */
+a, .btn, .quick-links a {
+  position: relative;
+}
+
+a::after, .btn::after, .quick-links a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.35s ease;
+}
+
+a:hover::after, .btn:hover::after, .quick-links a:hover::after {
+  width: 70%;
+}
+
+/* =====================
+   MEDIA QUERIES
+===================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    margin-left: 0;
+  }
+
+  .quick-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+/* =====================
+   ANIMATIONS
+===================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* =====================
+   READING PROGRESS BAR
+===================== */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+/* =====================
+   NEXT / PREVIOUS NAV
+===================== */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.post-navigation .nav-link {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  transition: all 0.35s ease;
+}
+.post-navigation .nav-link:hover {
+  background: rgba(56,189,248,0.15);
+  transform: translateY(-4px);
+}
+.post-navigation .nav-link h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #e0e7ff;
+}
+.post-navigation .nav-link p {
+  margin: 0.5rem 0 0 0;
+  color: #a5b4fc;
+  font-size: 0.95rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* =====================
+   READING PROGRESS BAR
+===================== */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+/* =====================
+   NEXT / PREVIOUS NAV
+===================== */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.post-navigation .nav-link {
+  flex: 1;
+  padding: 1rem 1.4rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  color: #e0e7ff;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.post-navigation .nav-link:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+.post-navigation .nav-link h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.post-navigation .nav-link p {
+  margin: 0.5rem 0 0 0;
+  color: #a5b4fc;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,352 @@
+/* ===============================
+   PROJECTS PAGE WRAPPER - DARK BLUE THEME
+================================ */
+.projects {
+  padding: 90px 8%;
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.25), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(37,99,235,0.25), transparent 60%),
+    #020617; /* deeper navy base */
+  color: #f0f9ff;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background-size: 400% 400%;
+  animation: projectsBg 20s ease infinite alternate;
+}
+
+/* ===============================
+   BACKGROUND ANIMATION
+================================ */
+@keyframes projectsBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===============================
+   HEADER
+================================ */
+.projects-header {
+  max-width: 620px;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.projects-header h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #60a5fa; /* bright blue for contrast */
+  text-shadow: 0 0 8px #3b82f6, 0 0 15px #2563eb;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.projects-header p {
+  font-size: 1.05rem;
+  color: #a5b4fc;
+  line-height: 1.7;
+}
+
+/* ===============================
+   PROJECT GRID
+================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  z-index: 1;
+  position: relative;
+}
+
+/* ===============================
+   PROJECT CARD
+================================ */
+.project-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(17,40,92,0.95), rgba(2,6,23,0.95));
+  backdrop-filter: blur(8px);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(59,130,246,0.15),
+    inset 0 0 25px rgba(59,130,246,0.15);
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.2s ease forwards;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
+.project-card:nth-child(4) { animation-delay: 0.8s; }
+.project-card:nth-child(5) { animation-delay: 1s; }
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: 0;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb, #60a5fa, #3b82f6);
+  background-size: 400% 400%;
+  animation: neonBorder 6s linear infinite;
+}
+
+.project-card:hover::before {
+  filter: brightness(1.4);
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(59,130,246,0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+.project-card * {
+  position: relative;
+  z-index: 1;
+}
+
+.project-card:hover {
+  transform: translateY(-16px) scale(1.05);
+  box-shadow:
+    0 35px 80px rgba(59,130,246,0.9),
+    inset 0 0 30px rgba(96,165,250,0.35);
+}
+
+/* ===============================
+   PROJECT IMAGE
+================================ */
+.project-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  border-radius: 20px 20px 0 0;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(59,130,246,0.5), 0 0 40px rgba(37,99,235,0.3);
+}
+
+.project-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(37,99,235,0.05),
+    rgba(37,99,235,0.25)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-image::after {
+  opacity: 1;
+}
+
+/* ===============================
+   PROJECT INFO
+================================ */
+.project-info {
+  padding: 28px 26px 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-info h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #7dd3fc;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-info h3 {
+  color: #bae6fd;
+  text-shadow:
+    0 0 10px rgba(125,211,252,0.9),
+    0 0 20px rgba(56,189,248,0.6);
+}
+
+.project-info p {
+  font-size: 0.95rem;
+  color: #cbd5fc;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+.project-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 14px;
+}
+
+.project-actions a {
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(37,99,235,0.35);
+  transition: all 0.3s ease;
+}
+
+.project-actions a:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 12px 30px rgba(37,99,235,0.5);
+  transform: scale(1.08);
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes glow {
+  0% { text-shadow: 0 0 8px #3b82f6, 0 0 12px #60a5fa; }
+  100% { text-shadow: 0 0 15px #3b82f6, 0 0 25px #60a5fa; }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neonBorder {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes moveParticles {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(50px,50px); }
+}
+
+/* ===============================
+   PARTICLE BACKGROUND
+================================ */
+.projects::before,
+.projects::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+.projects::before {
+  background: radial-gradient(circle, rgba(59,130,246,0.2) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveParticles 60s linear infinite;
+  opacity: 0.4;
+}
+
+.projects::after {
+  background: radial-gradient(circle, rgba(96,165,250,0.15) 2px, transparent 2px);
+  background-size: 40px 40px;
+  animation: moveParticles 100s linear infinite;
+  opacity: 0.25;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.projects p {
+  color: #a5b4fc;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .projects {
+    padding: 70px 6%;
+  }
+
+  .projects-header h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects {
+    padding: 60px 20px;
+  }
+
+  .projects-header {
+    margin-bottom: 50px;
+  }
+
+  .project-image img {
+    height: 200px;
+  }
+}
+.project-card {
+  position: relative;
+  background: #ffffff; /* white inside */
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(59,130,246,0.15),
+    inset 0 0 25px rgba(59,130,246,0.15);
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.2s ease forwards;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  color: #0f172a; /* dark text for readability */
+}
+
+.project-info h3 {
+  color: #1e3a8a; /* darker blue title for contrast */
+}
+
+.project-info p {
+  color: #1e293b; /* dark text for readability */
+}
+
+.project-actions a {
+  color: #ffffff; /* keep button text white */
+}
